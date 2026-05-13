@@ -3,7 +3,7 @@ import TopNav       from '../../Components/ui/TopNav';
 import EmpleadosList from '../../Components/Admin/EmpleadosList';
 
 const EmpleadosPage = () => (
-  <div className="flex min-h-screen w-full bg-slate-900">
+  <div className="flex min-h-screen w-full bg-banco-fondo">
     <Sidebar rol="admin" />
 
     <div className="flex flex-col flex-1 min-w-0">

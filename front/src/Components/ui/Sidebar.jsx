@@ -25,7 +25,7 @@ function Sidebar({ rol }) {
   const menu = rol === 'admin' ? menuAdmin : menuCajero;
 
   return (
-    <aside className="w-56 min-h-screen bg-slate-900 border-r border-slate-700/50 flex flex-col flex-shrink-0">
+    <aside className="w-56 min-h-screen bg-banco-fondo border-r border-slate-700/50 flex flex-col flex-shrink-0">
       <div className="px-5 py-5 border-b border-slate-700/50">
         <p className="text-xs text-slate-500 uppercase tracking-widest font-medium">
           {rol === 'admin' ? 'Director General' : 'Cajero'}
@@ -37,9 +37,9 @@ function Sidebar({ rol }) {
           <Link
             key={label}
             to={to}
-            className="flex items-center gap-3 px-5 py-3 text-slate-400 hover:text-emerald-400 hover:bg-slate-800/70 text-sm transition-all group cursor-pointer"
+            className="flex items-center gap-3 px-5 py-3 text-slate-400 hover:text-banco-acento hover:bg-banco-card/70 text-sm transition-all group cursor-pointer"
           >
-            <Icon className="text-base group-hover:text-emerald-400 flex-shrink-0" />
+            <Icon className="text-base group-hover:text-banco-acento flex-shrink-0" />
             {label}
           </Link>
         ))}
