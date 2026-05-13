@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import {
   FiHome, FiDollarSign, FiList, FiUser,
   FiUsers, FiSettings, FiBarChart2, FiLogOut,
@@ -5,19 +6,19 @@ import {
 import { MdGavel } from 'react-icons/md';
 
 const menuCajero = [
-  { label: 'Inicio',         Icon: FiHome },
-  { label: 'Mi Nómina',      Icon: FiDollarSign },
-  { label: 'Transacciones',  Icon: FiList },
-  { label: 'Mi Perfil',      Icon: FiUser },
+  { label: 'Inicio',        Icon: FiHome,       to: '/empleado' },
+  { label: 'Mi Nómina',     Icon: FiDollarSign, to: '/empleado' },
+  { label: 'Transacciones', Icon: FiList,       to: '/empleado' },
+  { label: 'Mi Perfil',     Icon: FiUser,       to: '/empleado' },
 ];
 
 const menuAdmin = [
-  { label: 'Inicio',         Icon: FiHome },
-  { label: 'Empleados',      Icon: FiUsers },
-  { label: 'Nóminas',        Icon: FiDollarSign },
-  { label: 'Embargos VIP',   Icon: MdGavel },
-  { label: 'Reportes',       Icon: FiBarChart2 },
-  { label: 'Configuración',  Icon: FiSettings },
+  { label: 'Inicio',        Icon: FiHome,       to: '/admin' },
+  { label: 'Empleados',     Icon: FiUsers,      to: '/admin/empleados' },
+  { label: 'Nóminas',       Icon: FiDollarSign, to: '/admin' },
+  { label: 'Embargos VIP',  Icon: MdGavel,      to: '/admin/embargos' },
+  { label: 'Reportes',      Icon: FiBarChart2,  to: '/admin' },
+  { label: 'Configuración', Icon: FiSettings,   to: '/admin' },
 ];
 
 function Sidebar({ rol }) {
@@ -32,26 +33,26 @@ function Sidebar({ rol }) {
       </div>
 
       <nav className="flex-1 py-3">
-        {menu.map(({ label, Icon }) => (
-          <a
+        {menu.map(({ label, Icon, to }) => (
+          <Link
             key={label}
-            href="#"
-            className="flex items-center gap-3 px-5 py-3 text-slate-400 hover:text-cyan-400 hover:bg-slate-800/70 text-sm transition-all group"
+            to={to}
+            className="flex items-center gap-3 px-5 py-3 text-slate-400 hover:text-emerald-400 hover:bg-slate-800/70 text-sm transition-all group cursor-pointer"
           >
-            <Icon className="text-base group-hover:text-cyan-400 flex-shrink-0" />
+            <Icon className="text-base group-hover:text-emerald-400 flex-shrink-0" />
             {label}
-          </a>
+          </Link>
         ))}
       </nav>
 
       <div className="px-5 py-4 border-t border-slate-700/50">
-        <a
-          href="/login"
-          className="flex items-center gap-3 text-slate-500 hover:text-red-400 text-sm transition-colors"
+        <Link
+          to="/login"
+          className="flex items-center gap-3 text-slate-500 hover:text-red-400 text-sm transition-colors cursor-pointer"
         >
           <FiLogOut className="text-base flex-shrink-0" />
           Cerrar sesión
-        </a>
+        </Link>
       </div>
     </aside>
   );

@@ -3,15 +3,26 @@ import { useNavigate } from 'react-router-dom';
 import { FiUser, FiLock, FiArrowRight } from 'react-icons/fi';
 import { MdSpaceDashboard } from 'react-icons/md';
 
-const BG = 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop';
+const BG  = 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop';
+const API = 'http://localhost:3001';
 
 const Login = () => {
   const [usuario,  setUsuario]  = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    if (usuario === 'admin') navigate('/admin');
+  const handleLogin = async () => {
+    const res  = await fetch(`${API}/api/auth/login`, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ username: usuario, password }),
+    });
+    const data = await res.json();
+
+    // Guardamos el objeto usuario en localStorage (vulnerabilidad intencional)
+    localStorage.setItem('usuario_banco', JSON.stringify(data.usuario));
+
+    if (data.usuario?.rol === 'admin') navigate('/admin');
     else navigate('/empleado');
   };
 
@@ -64,7 +75,7 @@ const Login = () => {
 
           <button
             onClick={handleLogin}
-            className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 rounded-xl transition-all shadow-lg shadow-blue-600/30"
+            className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 rounded-xl transition-all shadow-lg shadow-blue-600/30 cursor-pointer"
           >
             Entrar <FiArrowRight />
           </button>

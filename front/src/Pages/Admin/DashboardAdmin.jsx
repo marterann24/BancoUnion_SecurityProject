@@ -1,23 +1,87 @@
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Sidebar           from '../../Components/ui/Sidebar';
 import TopNav            from '../../Components/ui/TopNav';
 import AdminStats        from '../../Components/Admin/AdminStats';
 import TableTransactions from '../../Components/Admin/TableTransactions';
 
-const DashboardAdmin = () => (
-  <div className="flex min-h-screen w-full bg-slate-900">
-    <Sidebar rol="admin" />
+const API = 'http://localhost:3001';
 
-    <div className="flex flex-col flex-1 min-w-0">
-      <TopNav rol="admin" />
+const USER_COLS    = ['ID', 'Nombre Completo', 'Username', 'Rol', 'Salario'];
+const EMBARGO_COLS = ['ID', 'Cliente VIP', 'Monto Deuda', 'Nivel Riesgo', 'Estatus Legal'];
 
-      <main className="flex-1 p-8 overflow-y-auto">
-        <h2 className="text-white text-xl font-semibold mb-1">Panel de Dirección</h2>
-        <p className="text-slate-400 text-sm mb-6">Director General — Banco Unión</p>
-        <AdminStats />
-        <TableTransactions />
-      </main>
+const DashboardAdmin = () => {
+  const [users,    setUsers]    = useState([]);
+  const [embargos, setEmbargos] = useState([]);
+
+  useEffect(() => {
+    fetch(`${API}/api/users`)
+      .then((r) => r.json())
+      .then(setUsers)
+      .catch((err) => console.error('GET /api/users:', err));
+
+    fetch(`${API}/api/embargos`)
+      .then((r) => r.json())
+      .then(setEmbargos)
+      .catch((err) => console.error('GET /api/embargos:', err));
+  }, []);
+
+  const masaSalarial = users.reduce((sum, u) => sum + Number(u.salario || 0), 0);
+
+  return (
+    <div className="flex min-h-screen w-full bg-slate-900">
+      <Sidebar rol="admin" />
+
+      <div className="flex flex-col flex-1 min-w-0">
+        <TopNav rol="admin" />
+
+        <main className="flex-1 p-8 overflow-y-auto space-y-8">
+          <div>
+            <h2 className="text-white text-xl font-semibold mb-1">Panel de Dirección</h2>
+            <p className="text-slate-400 text-sm">Director General — Banco Unión</p>
+          </div>
+
+          <AdminStats
+            totalEmpleados={users.length}
+            totalEmbargos={embargos.length}
+            masaSalarial={masaSalarial}
+          />
+
+          <div>
+            <TableTransactions
+              title="Empleados"
+              columns={USER_COLS}
+              data={users.slice(0, 5)}
+            />
+            <div className="mt-3 flex justify-end">
+              <Link
+                to="/admin/empleados"
+                className="text-sm text-emerald-400 border border-emerald-400/50 hover:bg-emerald-400/10 px-4 py-2 rounded-xl transition-all cursor-pointer"
+              >
+                Ver tabla completa →
+              </Link>
+            </div>
+          </div>
+
+          <div>
+            <TableTransactions
+              title="Embargos VIP"
+              columns={EMBARGO_COLS}
+              data={embargos.slice(0, 5)}
+            />
+            <div className="mt-3 flex justify-end">
+              <Link
+                to="/admin/embargos"
+                className="text-sm text-emerald-400 border border-emerald-400/50 hover:bg-emerald-400/10 px-4 py-2 rounded-xl transition-all cursor-pointer"
+              >
+                Ver tabla completa →
+              </Link>
+            </div>
+          </div>
+        </main>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default DashboardAdmin;
