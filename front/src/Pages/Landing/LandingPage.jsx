@@ -4,7 +4,7 @@ import LandingBanner from '../../Components/Landing/LandingBanner';
 const LandingPage = () => (
   <div className="min-h-screen w-full bg-slate-900 flex flex-col">
     <header className="flex items-center px-10 py-5 border-b border-slate-800/80 bg-slate-900/95 backdrop-blur-sm flex-shrink-0">
-      <MdSpaceDashboard className="text-cyan-400 text-3xl mr-2" />
+      <MdSpaceDashboard className="text-emerald-400 text-3xl mr-2" />
       <span className="text-white text-xl font-bold tracking-wide">Banco Unión</span>
     </header>
 

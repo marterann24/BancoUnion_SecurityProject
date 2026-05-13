@@ -5,54 +5,50 @@ function TopNav({ rol }) {
   return (
     <nav className="bg-slate-800 border-b border-slate-700/60 h-16 flex items-center justify-between px-6 flex-shrink-0">
       <div className="flex items-center gap-2">
-        <MdSpaceDashboard className="text-cyan-400 text-2xl" />
+        <MdSpaceDashboard className="text-emerald-400 text-2xl" />
         <span className="text-white font-bold text-lg tracking-wide">
           Banco Unión
         </span>
       </div>
 
       <div className="flex items-center gap-6">
-        {/* Sin autenticar: solo mostrar botón de inicio de sesión */}
         {!rol && (
-          <button className="bg-cyan-500 hover:bg-cyan-400 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors">
+          <button className="bg-emerald-500 hover:bg-emerald-400 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors cursor-pointer">
             Iniciar sesión
           </button>
         )}
 
-        {/* Cajero autenticado */}
         {rol === "cajero" && (
           <>
-            <a href="/empleado" className="text-slate-300 hover:text-cyan-400 text-sm transition-colors">
+            <a href="/empleado" className="text-slate-300 hover:text-emerald-400 text-sm transition-colors cursor-pointer">
               Mi Nómina
             </a>
-            <a href="#" className="text-slate-300 hover:text-cyan-400 text-sm transition-colors">
+            <a href="#" className="text-slate-300 hover:text-emerald-400 text-sm transition-colors cursor-pointer">
               Mi Perfil
             </a>
           </>
         )}
 
-        {/* Admin autenticado */}
         {rol === "admin" && (
           <>
-            <a href="/empleado" className="text-slate-300 hover:text-cyan-400 text-sm transition-colors">
+            <a href="/admin/empleados" className="text-slate-300 hover:text-emerald-400 text-sm transition-colors cursor-pointer">
               Empleados
             </a>
-            <a href="/admin" className="text-slate-300 hover:text-cyan-400 text-sm transition-colors">
+            <a href="/admin/embargos" className="text-slate-300 hover:text-emerald-400 text-sm transition-colors cursor-pointer">
               Embargos VIP
             </a>
-            <a href="#" className="text-slate-300 hover:text-cyan-400 text-sm transition-colors">
+            <a href="#" className="text-slate-300 hover:text-emerald-400 text-sm transition-colors cursor-pointer">
               Nóminas
             </a>
-            <a href="#" className="text-slate-300 hover:text-cyan-400 text-sm transition-colors">
+            <a href="#" className="text-slate-300 hover:text-emerald-400 text-sm transition-colors cursor-pointer">
               Reportes
             </a>
           </>
         )}
 
-        {/* Iconos solo cuando está autenticado */}
         {rol && (
           <>
-            <button className="text-slate-400 hover:text-white transition-colors">
+            <button className="text-slate-400 hover:text-white transition-colors cursor-pointer">
               <FiBell className="text-xl" />
             </button>
             <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-600/30">
