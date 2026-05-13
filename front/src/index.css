@@ -1,6 +1,15 @@
 @import "tailwindcss";
 
-/* Elimina el ancho máximo del template de Vite que recortaba el layout */
+@theme {
+  --color-banco-fondo: #0B0F19;      /* Azul noche oscuro */
+  --color-banco-card: #1A2238;       /* Azul marino para tarjetas */
+  --color-banco-acento: #7B61FF;    /* Morado neón del botón */
+  --color-banco-brillo: #00E5FF;    /* Cyan brillante para acentos de texto */
+  --color-banco-hover:  #9580FF;    /* Morado claro para hover de botones */
+  --color-text-base: #E6EDF3;
+  --color-text-muted: #AAB4C0;
+}
+
 #root {
   width: 100%;
   max-width: 100%;
@@ -9,4 +18,5 @@
   border: none;
   min-height: 100vh;
   display: block;
+  background-color: var(--color-banco-fondo); /* Asegura que el fondo sea el azul */
 }

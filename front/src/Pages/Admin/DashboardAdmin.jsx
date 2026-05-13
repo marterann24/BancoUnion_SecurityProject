@@ -29,7 +29,7 @@ const DashboardAdmin = () => {
   const masaSalarial = users.reduce((sum, u) => sum + Number(u.salario || 0), 0);
 
   return (
-    <div className="flex min-h-screen w-full bg-slate-900">
+    <div className="flex min-h-screen w-full bg-banco-fondo">
       <Sidebar rol="admin" />
 
       <div className="flex flex-col flex-1 min-w-0">
@@ -37,7 +37,9 @@ const DashboardAdmin = () => {
 
         <main className="flex-1 p-8 overflow-y-auto space-y-8">
           <div>
-            <h2 className="text-white text-xl font-semibold mb-1">Panel de Dirección</h2>
+            <h2 className="text-white text-xl font-semibold mb-1">
+              <span className="text-banco-acento">Panel de </span>Dirección
+            </h2>
             <p className="text-slate-400 text-sm">Director General — Banco Unión</p>
           </div>
 
@@ -56,7 +58,7 @@ const DashboardAdmin = () => {
             <div className="mt-3 flex justify-end">
               <Link
                 to="/admin/empleados"
-                className="text-sm text-emerald-400 border border-emerald-400/50 hover:bg-emerald-400/10 px-4 py-2 rounded-xl transition-all cursor-pointer"
+                className="text-sm text-white bg-banco-acento hover:bg-banco-hover px-4 py-2 rounded-xl transition-all cursor-pointer"
               >
                 Ver tabla completa →
               </Link>
@@ -72,7 +74,7 @@ const DashboardAdmin = () => {
             <div className="mt-3 flex justify-end">
               <Link
                 to="/admin/embargos"
-                className="text-sm text-emerald-400 border border-emerald-400/50 hover:bg-emerald-400/10 px-4 py-2 rounded-xl transition-all cursor-pointer"
+                className="text-sm text-white bg-banco-acento hover:bg-banco-hover px-4 py-2 rounded-xl transition-all cursor-pointer"
               >
                 Ver tabla completa →
               </Link>

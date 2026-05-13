@@ -6,8 +6,8 @@ const AdminStats = ({ totalEmpleados = 0, totalEmbargos = 0, masaSalarial = 0 })
       label: 'Total empleados',
       valor: String(totalEmpleados),
       Icon:  FiUsers,
-      color: 'text-blue-400',
-      bg:    'bg-blue-400/10',
+      color: 'text-banco-brillo',
+      bg:    'bg-banco-acento/10',
     },
     {
       label: 'Embargos activos',
@@ -20,8 +20,8 @@ const AdminStats = ({ totalEmpleados = 0, totalEmbargos = 0, masaSalarial = 0 })
       label: 'Masa salarial mensual',
       valor: `Bs. ${Number(masaSalarial).toLocaleString('es-BO')}`,
       Icon:  FiDollarSign,
-      color: 'text-emerald-400',
-      bg:    'bg-emerald-400/10',
+      color: 'text-banco-acento',
+      bg:    'bg-banco-acento/10',
     },
     {
       label: 'Nivel de Riesgo del Sistema',
@@ -35,7 +35,7 @@ const AdminStats = ({ totalEmpleados = 0, totalEmbargos = 0, masaSalarial = 0 })
   return (
     <div className="grid grid-cols-4 gap-4">
       {stats.map(({ label, valor, Icon, color, bg }) => (
-        <div key={label} className="bg-slate-800 rounded-2xl p-6 border border-slate-700/50 shadow-xl flex items-center gap-4">
+        <div key={label} className="bg-banco-card rounded-2xl p-6 border border-slate-700/50 shadow-xl flex items-center gap-4">
           <div className={`w-14 h-14 ${bg} rounded-xl flex items-center justify-center flex-shrink-0`}>
             <Icon className={`text-2xl ${color}`} />
           </div>

@@ -37,7 +37,7 @@ const NewUserForm = () => {
         {/* Columna izquierda */}
         <div className="flex flex-col justify-center">
           <h2 className="text-4xl font-bold mb-4 leading-tight">
-            <span className="text-emerald-400">Panel de </span>
+            <span className="text-banco-acento">Panel de </span>
             <span className="text-white">Administración</span>
           </h2>
           <p className="text-slate-400 text-base mb-8 leading-relaxed max-w-md">
@@ -48,15 +48,15 @@ const NewUserForm = () => {
           <img
             src={IMG}
             alt="Dashboard analytics"
-            className="w-full h-72 object-cover rounded-2xl shadow-xl border border-slate-700/40 hover:border-emerald-500/50 transition-colors"
+            className="w-full h-72 object-cover rounded-2xl shadow-xl border border-slate-700/40 hover:border-banco-acento/50 transition-colors"
           />
         </div>
 
         {/* Columna derecha (formulario) */}
-        <div className="bg-slate-800 rounded-3xl p-10 border border-slate-700/50 shadow-2xl">
+        <div className="bg-banco-card rounded-3xl p-10 border border-slate-700/50 shadow-2xl">
           <div className="flex items-center gap-3 mb-8">
-            <div className="p-3 bg-emerald-500/10 rounded-xl">
-              <FiUserPlus className="text-emerald-400 text-2xl" />
+            <div className="p-3 bg-banco-acento/10 rounded-xl">
+              <FiUserPlus className="text-banco-acento text-2xl" />
             </div>
             <h3 className="text-white font-bold text-xl">Nuevo Empleado</h3>
           </div>
@@ -70,7 +70,7 @@ const NewUserForm = () => {
                 value={form.nombre_completo}
                 onChange={handleChange}
                 placeholder="Ej: Juan Pérez López"
-                className="w-full bg-slate-900 border border-slate-700 text-white text-base rounded-xl px-5 py-3 outline-none focus:border-emerald-500 transition-colors placeholder:text-slate-600"
+                className="w-full bg-banco-fondo border border-slate-700 text-white text-base rounded-xl px-5 py-3 outline-none focus:border-banco-acento transition-colors placeholder:text-slate-600"
               />
             </div>
 
@@ -83,7 +83,7 @@ const NewUserForm = () => {
                   value={form.username}
                   onChange={handleChange}
                   placeholder="cajero01"
-                  className="w-full bg-slate-900 border border-slate-700 text-white text-base rounded-xl px-5 py-3 outline-none focus:border-emerald-500 transition-colors placeholder:text-slate-600"
+                  className="w-full bg-banco-fondo border border-slate-700 text-white text-base rounded-xl px-5 py-3 outline-none focus:border-banco-acento transition-colors placeholder:text-slate-600"
                 />
               </div>
               <div>
@@ -94,7 +94,7 @@ const NewUserForm = () => {
                   value={form.password}
                   onChange={handleChange}
                   placeholder="sin cifrar"
-                  className="w-full bg-slate-900 border border-slate-700 text-white text-base rounded-xl px-5 py-3 outline-none focus:border-emerald-500 transition-colors placeholder:text-slate-600"
+                  className="w-full bg-banco-fondo border border-slate-700 text-white text-base rounded-xl px-5 py-3 outline-none focus:border-banco-acento transition-colors placeholder:text-slate-600"
                 />
               </div>
             </div>
@@ -108,7 +108,7 @@ const NewUserForm = () => {
                   value={form.salario}
                   onChange={handleChange}
                   placeholder="8500"
-                  className="w-full bg-slate-900 border border-slate-700 text-white text-base rounded-xl px-5 py-3 outline-none focus:border-emerald-500 transition-colors placeholder:text-slate-600"
+                  className="w-full bg-banco-fondo border border-slate-700 text-white text-base rounded-xl px-5 py-3 outline-none focus:border-banco-acento transition-colors placeholder:text-slate-600"
                 />
               </div>
               <div>
@@ -117,7 +117,7 @@ const NewUserForm = () => {
                   name="rol"
                   value={form.rol}
                   onChange={handleChange}
-                  className="w-full bg-slate-900 border border-slate-700 text-white text-base rounded-xl px-5 py-3 outline-none focus:border-emerald-500 transition-colors cursor-pointer"
+                  className="w-full bg-banco-fondo border border-slate-700 text-white text-base rounded-xl px-5 py-3 outline-none focus:border-banco-acento transition-colors cursor-pointer"
                 >
                   <option value="cajero">Cajero</option>
                   <option value="admin">Admin</option>
@@ -127,7 +127,7 @@ const NewUserForm = () => {
 
             <button
               type="submit"
-              className="w-full flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-bold py-3.5 rounded-xl transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_rgba(16,185,129,0.5)] mt-4 text-lg cursor-pointer"
+              className="w-full flex items-center justify-center gap-2 bg-banco-acento hover:bg-banco-hover text-white font-bold py-3.5 rounded-xl transition-all shadow-lg mt-4 text-lg cursor-pointer"
             >
               <FiUserPlus />
               Registrar Empleado

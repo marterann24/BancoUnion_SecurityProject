@@ -25,7 +25,7 @@ const EmpleadosList = () => {
         </div>
         <Link
           to="/admin/nuevo-empleado"
-          className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-bold px-5 py-2.5 rounded-xl text-sm transition-all shadow-lg shadow-emerald-500/25 cursor-pointer"
+          className="flex items-center gap-2 bg-banco-acento hover:bg-banco-hover text-white font-bold px-5 py-2.5 rounded-xl text-sm transition-all shadow-lg cursor-pointer"
         >
           <FiUserPlus />
           Registrar Nuevo Empleado

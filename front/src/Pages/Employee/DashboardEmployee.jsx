@@ -13,7 +13,7 @@ const DashboardEmployee = () => {
   }, []);
 
   return (
-    <div className="flex min-h-screen w-full bg-slate-900">
+    <div className="flex min-h-screen w-full bg-banco-fondo">
       <Sidebar rol="cajero" />
 
       <div className="flex flex-col flex-1 min-w-0">
