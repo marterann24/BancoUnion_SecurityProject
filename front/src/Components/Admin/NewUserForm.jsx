@@ -1,11 +1,17 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FiUserPlus } from 'react-icons/fi';
+import { FiUserPlus, FiCheckCircle, FiCircle } from 'react-icons/fi';
 
 const IMG = 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop';
 const API = 'http://localhost:3001';
 
 const EMPTY = { nombre_completo: '', username: '', password: '', salario: '', rol: 'cajero' };
+
+const RULES = [
+  { label: 'Mínimo 8 caracteres', test: (p) => p.length >= 8 },
+  { label: 'Al menos un número',  test: (p) => /\d/.test(p) },
+  { label: 'Al menos una letra',  test: (p) => /[a-zA-Z]/.test(p) },
+];
 
 const NewUserForm = () => {
   const [form, setForm] = useState(EMPTY);
@@ -13,8 +19,11 @@ const NewUserForm = () => {
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
+  const passwordValid = RULES.every((r) => r.test(form.password));
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!passwordValid) return;
     try {
       const res  = await fetch(`${API}/api/users`, {
         method:  'POST',
@@ -40,9 +49,8 @@ const NewUserForm = () => {
             <span className="text-white">Administración</span>
           </h2>
           <p className="text-slate-400 text-base mb-8 leading-relaxed max-w-md">
-            Registra nuevos empleados en el sistema bancario. Los datos
-            se almacenan directamente en la base de datos PostgreSQL
-            sin cifrado de contraseña.
+            Registra nuevos empleados en el sistema bancario. Las contraseñas
+            se almacenan con hash bcrypt en PostgreSQL.
           </p>
           <img
             src={IMG}
@@ -85,17 +93,31 @@ const NewUserForm = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm text-slate-400 mb-2">Password (texto plano)</label>
+                <label className="block text-sm text-slate-400 mb-2">Contraseña</label>
                 <input
-                  type="text"
+                  type="password"
                   name="password"
                   value={form.password}
                   onChange={handleChange}
-                  placeholder="sin cifrar"
+                  placeholder="••••••••"
                   className="w-full bg-banco-fondo border border-slate-700 text-white text-base rounded-xl px-5 py-3 outline-none focus:border-banco-acento transition-colors placeholder:text-slate-600"
                 />
               </div>
             </div>
+
+            {form.password.length > 0 && (
+              <div className="flex flex-col gap-1.5 -mt-3">
+                {RULES.map(({ label, test }) => {
+                  const met = test(form.password);
+                  return (
+                    <span key={label} className={`flex items-center gap-1.5 text-xs transition-colors ${met ? 'text-green-400' : 'text-slate-500'}`}>
+                      {met ? <FiCheckCircle className="flex-shrink-0" /> : <FiCircle className="flex-shrink-0" />}
+                      {label}
+                    </span>
+                  );
+                })}
+              </div>
+            )}
 
             <div className="grid grid-cols-2 gap-5">
               <div>
@@ -125,7 +147,8 @@ const NewUserForm = () => {
 
             <button
               type="submit"
-              className="w-full flex items-center justify-center gap-2 bg-banco-acento hover:bg-banco-hover text-white font-bold py-3.5 rounded-xl transition-all shadow-lg mt-4 text-lg cursor-pointer"
+              disabled={!passwordValid}
+              className="w-full flex items-center justify-center gap-2 bg-banco-acento hover:bg-banco-hover text-white font-bold py-3.5 rounded-xl transition-all shadow-lg mt-4 text-lg cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
             >
               <FiUserPlus />
               Registrar Empleado

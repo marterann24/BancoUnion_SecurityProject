@@ -11,7 +11,10 @@ const Login = ({ setIsAuthenticated }) => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  const canSubmit = usuario.trim() !== '' && password.trim() !== '';
+
   const handleLogin = async () => {
+    if (!canSubmit) return;
     const res  = await fetch(`${API}/api/auth/login`, {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -78,7 +81,8 @@ const Login = ({ setIsAuthenticated }) => {
 
           <button
             onClick={handleLogin}
-            className="w-full flex items-center justify-center gap-2 bg-banco-acento hover:bg-banco-hover text-white font-semibold py-3 rounded-xl transition-all shadow-lg shadow-banco-acento/30 cursor-pointer"
+            disabled={!canSubmit}
+            className="w-full flex items-center justify-center gap-2 bg-banco-acento hover:bg-banco-hover text-white font-semibold py-3 rounded-xl transition-all shadow-lg shadow-banco-acento/30 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
           >
             Entrar <FiArrowRight />
           </button>
