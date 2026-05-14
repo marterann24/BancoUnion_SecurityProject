@@ -1,11 +1,6 @@
 const pool = require("../config/db");
+//LOGIN vulnerable a inyeccion sql
 
-// ============================================================
-// ⚠️  LOGIN INTENCIONALMENTE VULNERABLE A SQL INJECTION
-//     Demostración para auditoría de seguridad.
-//     Los valores del body se concatenan directamente al query
-//     sin ningún tipo de sanitización ni parámetro preparado.
-// ============================================================
 const login = async (req, res) => {
   const { username, password } = req.body;
 
@@ -13,7 +8,6 @@ const login = async (req, res) => {
     return res.status(400).json({ error: "Faltan credenciales" });
   }
 
-  // ❌ CONCATENACIÓN DIRECTA — NUNCA hagas esto en producción
   const query = `SELECT * FROM usuarios WHERE username = '${username}' AND password = '${password}'`;
 
   // Imprime la query para que sea visible en la auditoría

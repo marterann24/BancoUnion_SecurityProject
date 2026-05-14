@@ -18,5 +18,5 @@
   border: none;
   min-height: 100vh;
   display: block;
-  background-color: var(--color-banco-fondo); /* Asegura que el fondo sea el azul */
+  background-color: var(--color-banco-fondo); 
 }

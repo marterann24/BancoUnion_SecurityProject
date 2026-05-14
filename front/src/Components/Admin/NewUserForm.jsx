@@ -34,7 +34,6 @@ const NewUserForm = () => {
     <div className="w-full min-h-[85vh] flex items-center justify-center p-6">
       <div className="grid grid-cols-2 gap-16 max-w-7xl w-full items-center">
 
-        {/* Columna izquierda */}
         <div className="flex flex-col justify-center">
           <h2 className="text-4xl font-bold mb-4 leading-tight">
             <span className="text-banco-acento">Panel de </span>
@@ -52,7 +51,6 @@ const NewUserForm = () => {
           />
         </div>
 
-        {/* Columna derecha (formulario) */}
         <div className="bg-banco-card rounded-3xl p-10 border border-slate-700/50 shadow-2xl">
           <div className="flex items-center gap-3 mb-8">
             <div className="p-3 bg-banco-acento/10 rounded-xl">
