@@ -6,7 +6,7 @@ import { MdSpaceDashboard } from 'react-icons/md';
 const BG  = 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop';
 const API = 'http://localhost:3001';
 
-const Login = () => {
+const Login = ({ setIsAuthenticated }) => {
   const [usuario,  setUsuario]  = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -19,10 +19,13 @@ const Login = () => {
     });
     const data = await res.json();
 
+    if (!data.usuario) return;
+
     // Guardamos el objeto usuario en localStorage (vulnerabilidad intencional)
     localStorage.setItem('usuario_banco', JSON.stringify(data.usuario));
+    setIsAuthenticated(true);
 
-    if (data.usuario?.rol === 'admin') navigate('/admin');
+    if (data.usuario.rol === 'admin') navigate('/admin');
     else navigate('/empleado');
   };
 

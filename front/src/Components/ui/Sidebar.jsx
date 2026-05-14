@@ -24,6 +24,11 @@ const menuAdmin = [
 function Sidebar({ rol }) {
   const menu = rol === 'admin' ? menuAdmin : menuCajero;
 
+  const handleLogout = () => {
+    localStorage.removeItem('usuario_banco');
+    window.location.href = '/';
+  };
+
   return (
     <aside className="w-56 min-h-screen bg-banco-fondo border-r border-slate-700/50 flex flex-col flex-shrink-0">
       <div className="px-5 py-5 border-b border-slate-700/50">
@@ -46,13 +51,13 @@ function Sidebar({ rol }) {
       </nav>
 
       <div className="px-5 py-4 border-t border-slate-700/50">
-        <Link
-          to="/login"
-          className="flex items-center gap-3 text-slate-500 hover:text-red-400 text-sm transition-colors cursor-pointer"
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-3 text-slate-500 hover:text-red-400 text-sm transition-colors cursor-pointer w-full"
         >
           <FiLogOut className="text-base flex-shrink-0" />
           Cerrar sesión
-        </Link>
+        </button>
       </div>
     </aside>
   );
